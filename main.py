@@ -1,4 +1,5 @@
 import customtkinter as ctk
+from level_1 import LevelOne
 import tkinter.messagebox as messagebox
 
 ctk.set_appearance_mode("dark")
@@ -22,7 +23,11 @@ class GameApp(ctk.CTk):
         self.current_frame.pack(fill="both", expand=True)
 
     def show_level_1(self):
-        messagebox.showinfo("System Notice", "Level 1 module is not connected yet.\nPlease connect level_1.py to proceed.")
+        if self.current_frame is not None:
+            self.current_frame.destroy() 
+            
+        self.current_frame = LevelOne(self)
+        self.current_frame.pack(fill="both", expand=True)
 
 class DashboardFrame(ctk.CTkFrame):
     def __init__(self, master):
