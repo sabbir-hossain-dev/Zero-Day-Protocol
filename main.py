@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from level_1 import LevelOne
 from level_2 import LevelTwo
+from level_3 import LevelThree
 import tkinter.messagebox as messagebox
 
 ctk.set_appearance_mode("dark")
@@ -37,6 +38,13 @@ class GameApp(ctk.CTk):
         self.current_frame = LevelTwo(self)
         self.current_frame.pack(fill="both", expand=True)
 
+    def show_level_3(self):
+        if self.current_frame is not None:
+            self.current_frame.destroy() 
+        
+        self.current_frame = LevelThree(self)
+        self.current_frame.pack(fill="both", expand=True)    
+
 class DashboardFrame(ctk.CTkFrame):
     def __init__(self, master):
         super().__init__(master, fg_color="transparent") 
@@ -52,6 +60,10 @@ class DashboardFrame(ctk.CTkFrame):
         # Level 2 Button
         self.lvl2_btn = ctk.CTkButton(self, text="START LEVEL 2", command=self.master.show_level_2, width=300, height=50)
         self.lvl2_btn.pack(pady=10)
+
+        # Level 3 Button
+        self.lvl3_btn = ctk.CTkButton(self, text="START LEVEL 3: ROOT ACCESS", command=self.master.show_level_3, width=300, height=50, fg_color="#8B0000", hover_color="#600000")
+        self.lvl3_btn.pack(pady=10)
         
         # Exit Button
         self.btn_exit = ctk.CTkButton(self, text="Exit System", fg_color="#8B0000", hover_color="#600000", command=self.master.destroy)
